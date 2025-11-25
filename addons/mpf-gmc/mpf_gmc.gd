@@ -1,5 +1,11 @@
-extends GMCNode
+###
+# The core MPF GMC Script, responsible for everything.
+#
+# Set this as a Global Autoload in your Godot project.
+###
+
 class_name MPFGMC
+extends LoggingNode
 
 const CONFIG_PATH = "res://gmc.cfg"
 const LOCAL_CONFIG_PATH = "user://gmc.local.cfg"
@@ -75,7 +81,7 @@ func _init():
 		# TODO: Add logging configuration as init parameters so logging
 		# is available in the _init() methods of all scripts
 		var script_inst: Resource = load(script) if script else s[1]
-		# For the main server nodes (GMCNode) pass this instance to the constructor
+		# For the main server nodes (GMCCoreScriptNode) pass this instance to the constructor
 		if s[3] == true:
 			self[s[0]] = script_inst.new(self)
 		else:

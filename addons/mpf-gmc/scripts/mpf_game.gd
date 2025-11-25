@@ -4,8 +4,8 @@
 # Released under the MIT License
 
 
-extends GMCNode
 class_name GMCGame
+extends GMCCoreScriptNode
 
 # The list of modes currently active in MPF
 var active_modes := []

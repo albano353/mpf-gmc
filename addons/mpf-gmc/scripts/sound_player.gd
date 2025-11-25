@@ -1,6 +1,6 @@
 # Copyright 2021 Paradigm Tilt
 
-extends GMCNode
+extends GMCCoreScriptNode
 
 signal marker(event_name: String)
 

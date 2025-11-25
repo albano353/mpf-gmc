@@ -1,6 +1,6 @@
 # Base singleton for managing all MC-related references,
 # including windows, displays, slides, and widgets
-extends GMCNode
+extends GMCCoreScriptNode
 class_name GMCMedia
 
 var sound: Node

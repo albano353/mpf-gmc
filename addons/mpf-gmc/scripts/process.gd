@@ -1,5 +1,5 @@
-extends GMCNode
 class_name GMCProcess
+extends GMCCoreScriptNode
 
 signal mpf_spawned(result)
 signal mpf_log_created(log_file_path)

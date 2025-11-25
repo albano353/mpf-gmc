@@ -3,7 +3,7 @@
 # Original code © 2021 Anthony van Winkle / Paradigm Tilt
 # Released under the MIT License
 
-extends GMCNode
+extends GMCCoreScriptNode
 class_name GMCServer
 
 

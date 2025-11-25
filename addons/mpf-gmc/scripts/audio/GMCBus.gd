@@ -16,8 +16,8 @@ var _bus_index: int
 var _active_duck: Tween
 var _duck_release_timer: Timer
 
-func _init(mpf: MPFGMC, n: String, log_level: int = 30):
-	self.mpf = mpf
+func _init(mpf_instance: MPFGMC, n: String, log_level: int = 30):
+	self.mpf = mpf_instance
 	self.name = n
 	self.configure_logging("Bus<%s>" % self.name, log_level)
 	# Store the target restore volume for post-ducks

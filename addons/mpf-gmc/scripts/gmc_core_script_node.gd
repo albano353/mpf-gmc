@@ -2,8 +2,8 @@
 # to the MPF global autoload. This class accepts the global
 # as an argument so refs can be internalized.
 
+class_name GMCCoreScriptNode
 extends LoggingNode
-class_name GMCNode
 
 var mpf: MPFGMC
 

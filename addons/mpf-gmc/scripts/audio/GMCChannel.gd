@@ -9,8 +9,8 @@ var mpf: MPFGMC
 @warning_ignore("shadowed_global_identifier")
 var log: GMCLogger
 
-func _init(mpf: MPFGMC, n: String, b: GMCBus):
-	self.mpf = mpf
+func _init(mpf_instance: MPFGMC, n: String, b: GMCBus):
+	self.mpf = mpf_instance
 	self.name = n
 	# This sets the AudioStreamPlayer.bus property to control its playback,
 	# and must be set to the StringName of the bus being used.
