@@ -26,7 +26,7 @@ func _enter_tree() -> void:
 	self.log.debug("Generated widget lookups: %s", widgets)
 	self.log.debug("Generated sound lookups: %s", sounds)
 
-	sound = preload("sound_player.gd").new()
+	sound = preload("sound_player.gd").new(self.mpf)
 
 	# Process is only called on children in the tree, so add the children
 	# that need to call process

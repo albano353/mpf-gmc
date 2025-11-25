@@ -5,7 +5,7 @@
 extends LoggingNode
 class_name GMCNode
 
-var mpf: Node
+var mpf: MPFGMC
 
 func _init(mpf_gmc) -> void:
     self.mpf = mpf_gmc
