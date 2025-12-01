@@ -3,7 +3,7 @@
 # Original code © 2021 Anthony van Winkle / Paradigm Tilt
 # Released under the MIT License
 
-extends LoggingNode
+extends GMCCoreScriptNode
 class_name GMCServer
 
 
@@ -50,7 +50,7 @@ var _thread: Thread
 
 func _ready() -> void:
 	# Set the port for BCP connections
-	port = MPF.get_config_value("gmc", "bcp_port", port)
+	port = self.mpf.get_config_value("gmc", "bcp_port", port)
 	# Wait until a server is actively listening before polling for clients
 	set_process(false)
 
@@ -75,14 +75,14 @@ func _process(_delta: float) -> void:
 ## Handle connection validation before public on_connect method
 func _on_connect(payload: Dictionary) -> void:
 	if payload.controller_name == "Mission Pinball Framework":
-		if not MPF.validate_min_version(payload.controller_version, MPF.MPF_MIN_VERSION):
-			self.log.error("MPF %s does not meet GMC's minimum version requirement %s", [payload.controller_version, MPF.MPF_MIN_VERSION])
+		if not self.mpf.validate_min_version(payload.controller_version, self.mpf.MPF_MIN_VERSION):
+			self.log.error("MPF %s does not meet GMC's minimum version requirement %s", [payload.controller_version, self.mpf.MPF_MIN_VERSION])
 			self.stop(true)
-			assert(false, "GMC requires MPF version %s, but found %s." % [MPF.MPF_MIN_VERSION, payload.controller_version])
-		if not MPF.validate_min_version(MPF.version, payload.gmc_version):
-			self.log.error("GMC %s does not meet MPF's minimum version requirement %s", [MPF.version, payload.gmc_version])
+			assert(false, "GMC requires MPF version %s, but found %s." % [self.mpf.MPF_MIN_VERSION, payload.controller_version])
+		if not self.mpf.validate_min_version(self.mpf.version, payload.gmc_version):
+			self.log.error("GMC %s does not meet MPF's minimum version requirement %s", [self.mpf.version, payload.gmc_version])
 			self.stop(true)
-			assert(false, "MPF requires GMC version %s, but found %s." % [payload.gmc_version, MPF.version])
+			assert(false, "MPF requires GMC version %s, but found %s." % [payload.gmc_version, self.mpf.version])
 	self.on_connect()
 
 ###
@@ -94,21 +94,21 @@ func set_status(new_status: ServerStatus):
 	status_changed.emit(self.status)
 
 func deferred_game(method: String, result=null) -> void:
-	var callable = Callable(MPF.game, method)
+	var callable = Callable(self.mpf.game, method)
 	if result:
 		callable.call(result)
 	else:
 		callable.call()
 
 func deferred_mc(method: String, result=null) -> void:
-	var callable = Callable(MPF.media, method)
+	var callable = Callable(self.mpf.media, method)
 	if result:
 		callable.call(result)
 	else:
 		callable.call()
 
 func deferred_game_player(result) -> void:
-	MPF.game.update_player(result)
+	self.mpf.game.update_player(result)
 
 func deferred_scene(scene_res: String) -> void:
 	get_tree().change_scene_to_file(scene_res)
