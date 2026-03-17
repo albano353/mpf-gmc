@@ -44,7 +44,8 @@ func _on_item_highlighted(payload: Dictionary) -> void:
 			# named item_highlight_anim and play if so. Seek to beginning of animation first
 			# in case the player changes highlighted item faster than animation can complete.
 			if c.get_node("AnimationPlayer").has_animation("item_highlight_anim"):
-				c.get_node("AnimationPlayer").seek(0)
+				# Had to comment out the line below to clean up glitchy looking fades.
+				#c.get_node("AnimationPlayer").seek(0)
 				c.get_node("AnimationPlayer").play("item_highlight_anim",-1,1,false)
 		else:
 			c.hide()
